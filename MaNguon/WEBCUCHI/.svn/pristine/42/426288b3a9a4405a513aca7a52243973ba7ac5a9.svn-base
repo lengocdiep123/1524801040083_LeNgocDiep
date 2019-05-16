@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using WebSchool.DAO;
+
+namespace WebSchool.BUS
+{
+    public class TSDangKiTrucTuyenTinServiecs
+    {
+        public static TSDangKiTrucTuyenTinController db = new TSDangKiTrucTuyenTinController();
+
+        #region[TSDangKiTrucTuyenTintuc_Insert]
+        public void TSDangKiTrucTuyenTintuc_Insert(TSDangKiTrucTuyenTinInfo data)
+        {
+            db.TSDangKiTrucTuyenTintuc_Insert(data);
+        }
+        #endregion
+
+       
+        #region[TSDangKiTrucTuyenTintuc_GetbyAll]
+        public DataTable TSDangKiTrucTuyenTintuc_GetbyAll()
+        {
+            return db.TSDangKiTrucTuyenTintuc_GetbyAll();
+        }
+        #endregion
+
+        #region[TSDangkitructuyen_GetByIDNamdangki]
+        public DataTable TSDangkitructuyen_GetByIDNamdangki(string IDNamdangki)
+        {
+            return db.TSDangkitructuyen_GetByIDNamdangki(IDNamdangki);
+        }
+        #endregion
+    }
+}

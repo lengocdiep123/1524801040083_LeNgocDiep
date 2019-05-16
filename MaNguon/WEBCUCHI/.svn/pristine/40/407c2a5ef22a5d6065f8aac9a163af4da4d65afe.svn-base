@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.SessionState;
+
+namespace WebSchool
+{
+    public class Global : System.Web.HttpApplication
+    {
+
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            Application.Add("OnlineCount", 0);
+        }
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            Session.Timeout = 12;
+            //----------------OnlineCount--------------------------------
+            int onlineVisit;
+            if (Application["OnlineCount"] == null)
+            {
+                onlineVisit = 0;
+            }
+            else
+            {
+                onlineVisit = int.Parse(Application["OnlineCount"].ToString()) + 1;
+                // khóa website
+                Application.Lock();
+            }
+            Application.Lock();
+            Application["OnlineCount"] = onlineVisit;
+            Application.UnLock();
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+            Application["OnlineCount"] = int.Parse(Application["OnlineCount"].ToString()) - 1;
+            Session["Popup"] = null;
+            //Application.Lock();
+            //Application["Online"] = System.Convert.ToInt32(Application["Online"]) - 1;
+            //Application.UnLock();
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

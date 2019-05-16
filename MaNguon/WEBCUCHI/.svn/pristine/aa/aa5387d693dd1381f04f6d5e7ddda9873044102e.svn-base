@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+
+namespace WebSchool.DAO
+{
+    public class PermissionController : SqlDataProvider
+    {
+        #region[Permission_Insert]
+        public void Permission_Insert(PermissionInfo data)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Permission_Insert", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", data.Username));
+                cmd.Parameters.Add(new SqlParameter("@GroupUsers_ID", data.GroupUsers_ID));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region[Permission_Update]
+        public void Permission_Update(PermissionInfo data)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Permission_Update", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@ID", data.ID));
+                cmd.Parameters.Add(new SqlParameter("@Username", data.Username));
+                cmd.Parameters.Add(new SqlParameter("@GroupUsers_ID", data.GroupUsers_ID));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region[Permission_Delete]
+        public void Permission_Delete(string ID)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Permission_Delete", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@ID", ID));
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+
+        #region[Permission_GetByUserName]
+        public DataTable Permission_GetByUserName(string UserName)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Permission_GetByUserName", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", UserName));
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+        #endregion
+
+        #region[Permission_GetByID]
+        public DataTable Permission_GetByID(string ID)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Permission_GetByID", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@ID", ID));
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+        #endregion
+
+        #region[Permission_GetByAll]
+        public DataTable Permission_GetByAll()
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Permission_GetByAll", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+        #endregion
+
+        #region[sp_Permission_Account_GetByGroup]
+        public DataTable sp_Permission_Account_GetByGroup(string UserName)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Permission_Account_GetByGroup", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", UserName));
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+        #endregion
+    }
+}

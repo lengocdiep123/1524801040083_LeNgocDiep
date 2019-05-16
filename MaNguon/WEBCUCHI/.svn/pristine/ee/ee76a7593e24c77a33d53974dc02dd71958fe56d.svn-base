@@ -1,0 +1,194 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Net;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WebSchool.BUS;
+using WebSchool.Common;
+
+namespace WebSchool.web.Tuyensinh
+{
+    public partial class search : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                string[] tach = Request.QueryString.ToString().Split('=');
+                
+                txtSearch.Text = "";
+                pnThongbao.Visible = false;
+                pnHoso.Visible = false;
+                pnKQHS.Visible = false;
+                pndetail.Visible = false;
+            }
+        }
+
+        public bool checkVisible(string obj)
+        {
+            if (obj.Length > 0)
+                return true;
+            return false;
+        }
+
+        protected void btSearch_Click(object sender, EventArgs e)
+        {
+            pnThongbao.Visible = false;
+            pnHoso.Visible = false;
+            pnKQHS.Visible = false;
+            pndetail.Visible = false;
+            DataTable dtTB = new DataTable();
+            DataTable dtHS = new DataTable();
+            DataTable dtKQHS = new DataTable();
+
+            string textsearch = txtSearch.Text.Trim();
+            if (textsearch.Length > 67)
+                textsearch = textsearch.Remove(67);
+
+            dtTB = TSTinServiecs.db.TSTintuc_GetByTop("", "dangtin=1 and (Tieude like N'%" + textsearch + "%' OR Tomtat like N'%" + textsearch + "%')", "ID desc");
+            if (dtTB.Rows.Count > 0)
+            {
+                pnThongbao.Visible = true;
+                dtlThongbao.DataSource = dtTB;
+                dtlThongbao.DataBind();
+            }
+
+           
+            dtHS = TSHoSoTinServiecs.db.TSHoSoTintuc_GetByTop("", "dangtin=1 and (Tieude like N'%" + textsearch + "%' OR Tomtat like N'%" + textsearch + "%')", "ID desc");
+            if (dtHS.Rows.Count > 0)
+            {
+                pnHoso.Visible = true;
+                dtlHoso.DataSource = dtHS;
+                dtlHoso.DataBind();
+            }
+
+            dtKQHS = TSKetQuaTinServiecs.db.TSKetQuaTintuc_GetByTop("", "dangtin=1 and (Tieude like N'%" + textsearch + "%' OR Tomtat like N'%" + textsearch + "%')", "ID desc");
+            if (dtKQHS.Rows.Count > 0)
+            {
+                pnKQHS.Visible = true;
+                dtlKQHS.DataSource = dtKQHS;
+                dtlKQHS.DataBind();
+            }
+        }
+
+        protected void lbtThongbao_Command(object sender, CommandEventArgs e)
+        {
+
+            tmpTable.Text = "Thongbao";
+            string ID = e.CommandArgument.ToString();
+            pnThongbao.Visible = false;
+            pnHoso.Visible = false;
+            pnKQHS.Visible = false;
+            pndetail.Visible = true;
+            DataTable dt = TSTinServiecs.db.TSTintuc_GetByTop("", "ID=" + ID, "");
+          
+            dtldetail.DataSource = dt;
+            dtldetail.DataBind();
+        }
+
+        protected void lbtHoso_Command(object sender, CommandEventArgs e)
+        {
+
+            tmpTable.Text = "Hoso";
+            string ID = e.CommandArgument.ToString();
+            pnThongbao.Visible = false;
+            pnHoso.Visible = false;
+            pnKQHS.Visible = false;
+            pndetail.Visible = false;
+            pndetail.Visible = true;
+            DataTable dt = TSHoSoTinServiecs.db.TSHoSoTintuc_GetByTop("", "ID=" + ID, "");
+
+            dtldetail.DataSource = dt;
+            dtldetail.DataBind();
+        }
+
+        protected void lbtKQHS_Command(object sender, CommandEventArgs e)
+        {
+
+            tmpTable.Text = "KQHS";
+            string ID = e.CommandArgument.ToString();
+            pnThongbao.Visible = false;
+            pnHoso.Visible = false;
+            pnKQHS.Visible = false;
+            pndetail.Visible = false;
+            pndetail.Visible = true;
+            DataTable dt = TSKetQuaTinServiecs.db.TSKetQuaTintuc_GetByTop("", "ID=" + ID, "");
+
+            dtldetail.DataSource = dt;
+            dtldetail.DataBind();
+        }
+
+        protected void dtldetail_ItemDataBound(object sender, DataListItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item | e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                string ID = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "ID"));
+                DataTable dt = new DataTable();
+                if (tmpTable.Text == "Thongbao")
+                {
+                    dt = TSFileServices.db.TSFile_GetByTop("", "IDTin=" + ID, "");
+                }
+                else if (tmpTable.Text == "Hoso")
+                {
+                    dt = TSHoSoFileServices.db.TSHoSoFile_GetByTop("", "IDTin=" + ID, "");
+                }
+                else
+                {
+                    dt = TSKetQuaFileServices.db.TSKetQuaFile_GetByTop("", "IDTin=" + ID, "");
+                }
+                
+                if (dt.Rows.Count > 0)
+                {
+                    DataList listfile = (DataList)e.Item.FindControl("dtlfile");
+                    Label lb = (Label)e.Item.FindControl("lbattachfile");
+                    if (listfile != null)
+                    {
+                        lb.Visible = true;
+                        listfile.DataSource = dt;
+                        listfile.DataBind();
+                    }
+                }
+            }
+        }
+
+        protected void lbtlinkdownload_Command(object sender, CommandEventArgs e)
+        {
+            try
+            {
+                string ID = e.CommandArgument.ToString();
+                DataTable dt = new DataTable();
+                
+                if (tmpTable.Text == "Thongbao")
+                {
+                    dt = TSFileServices.db.TSFile_GetByTop("", "IDTin=" + ID, "");
+                }
+                else if (tmpTable.Text == "Hoso")
+                {
+                    dt = TSHoSoFileServices.db.TSHoSoFile_GetByTop("", "IDTin=" + ID, "");
+                }
+                else
+                {
+                    dt = TSKetQuaFileServices.db.TSKetQuaFile_GetByTop("", "IDTin=" + ID, "");
+                }
+
+                string filepath = dt.Rows[0]["duongdan"].ToString();
+                string[] tach = filepath.Split('/');
+
+                HttpResponse response = HttpContext.Current.Response;
+                response.Clear();
+                response.ContentType = "application/octect-stream";
+                response.AppendHeader("content-disposition", "filename=" + tach[tach.Length - 1]);
+                filepath = Server.MapPath(filepath).Replace("web.Truong\\", "");
+                response.TransmitFile(filepath);
+                response.End();
+            }
+            catch (Exception ex)
+            {
+                WebMsgBox.Show("Lỗi " + ex.Message);
+            }
+        }
+    }
+}

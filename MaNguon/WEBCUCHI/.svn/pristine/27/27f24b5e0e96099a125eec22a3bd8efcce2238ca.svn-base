@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WebSchool.BUS;
+using WebSchool.Common;
+using WebSchool.DAO;
+
+namespace WebSchool.web.Admin
+{
+    public partial class frTS_DanhmucNganh : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["Role"] == null)
+                Response.Redirect("~/web.Admin/Login.aspx");
+            if (!IsPostBack)
+            { 
+                pnCreate.Visible = false;
+                pnList.Visible = true;
+                BindGrid();
+            }
+        }
+
+        protected void BindGrid()
+        {
+            DataTable dt = TSNganhhocServices.db.TSNganhhoc_GetByTop("","","");
+            grdList.DataSource = dt;
+            grdList.DataBind();
+        }
+
+        protected void btSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TSNganhhocInfo obj = new TSNganhhocInfo();
+                if (btSave.Text == "Cập nhật tin")
+                {
+                    obj.ID = txttmp.Text;
+                    obj.Name = txtTenNganh.Text;
+
+                    TSNganhhocServices.db.TSNganhhoc_Update(obj);
+
+                    pnCreate.Visible = false;
+                    pnList.Visible = true;
+                }
+                else
+                {
+                    obj.Name = txtTenNganh.Text;
+
+                    TSNganhhocServices.db.TSNganhhoc_Insert(obj);
+
+                    pnCreate.Visible = false;
+                    pnList.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                WebMsgBox.Show("Lỗi " + ex.Message);
+            }
+        }
+
+        protected void grdList_ItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            try
+            {
+                string temp = e.CommandArgument.ToString();
+                DataTable dt = TSNganhhocServices.db.TSNganhhoc_GetByTop("", "ID=" + temp, "");
+                if (e.CommandName == "Edit")
+                {
+                    txttmp.Text = temp;
+                    txtTenNganh.Text = dt.Rows[0]["Name"].ToString();
+                    btSave.Text = "Cập nhật tin";
+                    pnList.Visible = false;
+                    pnCreate.Visible = true;
+                }
+                else if (e.CommandName == "Delete")
+                {
+                    TSNganhhocServices.db.TSNganhhoc_Delete(temp);
+                    BindGrid();
+                }
+              
+            }
+            catch (Exception ex)
+            {
+                WebMsgBox.Show("Lỗi " + ex.Message);
+            }
+        }
+
+        protected void grdList_PageIndexChanged(object source, DataGridPageChangedEventArgs e)
+        {
+            grdList.CurrentPageIndex = e.NewPageIndex;
+            BindGrid();
+        }
+
+        protected void bt_new_Click(object sender, EventArgs e)
+        {
+            pnCreate.Visible = true;
+            pnList.Visible = false;
+            txtTenNganh.Text = "";
+        }
+    }
+}

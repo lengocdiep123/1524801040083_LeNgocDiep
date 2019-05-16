@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using WebSchool.DAO;
+
+namespace WebSchool.BUS
+{
+    public class TSNganhhocServices
+    {
+        public static TSNganhhocController db = new TSNganhhocController();
+
+        #region[TSNganhhoc_Insert]
+        public void TSNganhhoc_Insert(TSNganhhocInfo data)
+        {
+            db.TSNganhhoc_Insert(data);
+        }
+        #endregion
+
+        #region[TSNganhhoc_Update]
+        public void TSNganhhoc_Update(TSNganhhocInfo data)
+        {
+            db.TSNganhhoc_Update(data);
+        }
+        #endregion
+
+        #region[TSNganhhoc_Delete]
+        public void TSNganhhoc_Delete(string ID)
+        {
+            db.TSNganhhoc_Delete(ID);
+        }
+        #endregion
+
+        #region[TSNganhhoc_GetByTop]
+        public DataTable TSNganhhoc_GetByTop(string Top, string Where, String Order)
+        {
+            return db.TSNganhhoc_GetByTop(Top, Where, Order);
+        }
+        #endregion
+    }
+}

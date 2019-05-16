@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace WebSchool.DAO
+{
+    public class TSDangKiTrucTuyenTinInfo
+    {
+        public string ID { get; set; }
+        public string hoten { get; set; }
+        public string gioitinh { get; set; }
+        public DateTime ngaysinh { get; set; }
+        public string IDNoisinh { get; set; }
+        public string IDDantoc { get; set; }
+        public string cmnd { get; set; }
+
+        public string Hokhauthuongtru { get; set; }
+        public string Choohiennay { get; set; }
+        public string NamTotnghiepTHCS { get; set; }
+        public string NamTotnghiepTHPT { get; set; }
+        public string TruongTotnghiepTrunghoc { get; set; }
+        public string IDDoituonguutien { get; set; }
+        public string IDNguyenvong1 { get; set; }
+        public string IDNguyenvong2 { get; set; }
+        public string Thoigianhoc { get; set; }
+        public string ChaHoten { get; set; }
+        public string ChaNamsinh { get; set; }
+        public string ChaDienthoai { get; set; }
+        public string MeHoten { get; set; }
+        public string MeNamsinh { get; set; }
+        public string MeDienthoai { get; set; }
+
+        public string Hotennhanthu { get; set; }
+        public string Diachinhanthu { get; set; }
+        public string Dienthoainhanthu { get; set; }
+
+        public DateTime NgayDK { get; set; }
+        public string IDNamdangki{ get; set; }
+    }
+}

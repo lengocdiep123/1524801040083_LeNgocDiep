@@ -1,0 +1,20 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Admin/pageAdmin.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="WebSchool.web.Admin.index" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+        <article class="art-post art-article">
+        <div class="art-postcontent art-postcontent-0 clearfix">
+            <div class="art-content-layout">
+                <div class="art-content-layout-row">
+                    <div class="art-layout-cell layout-item-0" style="width: 100%" >
+                        <p><br style="line-height: 295px"/></p>
+                        <h1>WELCOME TO WEBSITE ADMINISTRATOR</h1>
+                          
+                   </div>
+               </div>
+            </div>
+        </div>
+       
+    </article>
+</asp:Content>

@@ -1,0 +1,89 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WebSchool.BUS;
+
+namespace WebSchool.web.Admin
+{
+    public partial class pageAdmin : System.Web.UI.MasterPage
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["Username"] != null)
+            {
+                lbUsename.Text = "Xin chào, ";
+                DataTable dt = new DataTable();
+                dt = AccountServices.db.Account_GetByUserName(Session["UserName"].ToString());
+                if (dt != null)
+                    lbUsename.Text += dt.Rows[0]["fullname"].ToString();
+                pnHeader.Visible = true;
+                pnLogout.Visible = true;
+              
+                dt = PermissionServices.db.Permission_GetByUserName(Session["UserName"].ToString());
+
+                foreach (DataRow r in dt.Rows)
+                {
+                    switch (r["GroupUsers_ID"].ToString())
+                    {
+                        case "1":
+                            pnAdmin.Visible = true;
+                          
+                            pnTruong.Visible = true;
+                            pnDaotao.Visible = true;
+                            pnTS.Visible = true;
+                            pnHSSV.Visible = true;
+                            pnThuvien.Visible = true;
+                            pnTaivu.Visible = true;
+                            pnTovanhoa.Visible = true;
+                            pnKCokhi_oto.Visible = true;
+                            pnKTinhoc_nucong.Visible = true;
+                            pnKKythuatdien.Visible = true;
+                            pnKKythuatcoso_nn.Visible = true;
+                            
+                            break;
+                        case "2":
+                            pnTruong.Visible = true;
+                            break;
+                        case "3":
+                            pnDaotao.Visible = true;
+                            break;
+                        case "4":
+                            pnTS.Visible = true;
+                            break;
+                        case "5":
+                            pnHSSV.Visible = true;
+                            break;
+                        case "6":
+                            pnThuvien.Visible = true;
+                            break;
+                        case "7":
+                            pnTaivu.Visible = true;
+                            break;
+                        case "8":
+                            pnTovanhoa.Visible = true;
+                            break;
+                        case "9":
+                            pnKCokhi_oto.Visible = true;
+                            break;
+                        case "10":
+                            pnKTinhoc_nucong.Visible = true;
+                            break;
+                        case "11":
+                            pnKKythuatdien.Visible = true;
+                            break;
+                        case "12":
+                            pnKKythuatcoso_nn.Visible = true;
+                            break;
+                    }
+                  
+                }
+                
+            }
+           
+        }
+    }
+}

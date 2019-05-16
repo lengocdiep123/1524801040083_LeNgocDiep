@@ -1,0 +1,43 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Admin/pageAdmin.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="WebSchool.web.Admin.login" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <article class="art-post art-article">
+        <h2 class="art-postheader">ĐĂNG NHẬP HỆ THỐNG</h2>
+        <div class="art-postcontent art-postcontent-0 clearfix">
+            <p><br/></p>
+            <table class="art-article" style="width: 40%; border:none">
+                <tbody>
+                    <tr>
+                        <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                            <span style="font-size: 14px;">Tên đăng nhập:<br/></span>
+                        </td>
+                        <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                            <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                            <span style="font-size: 14px;">Mật khẩu:<br/></span>
+
+                        </td>
+                        <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; "
+                          colspan="2">
+                            <asp:Button ID="btLogin" runat="server" text="Đăng nhập" CssClass="art-button" OnClick="btLogin_Click"/>
+
+                         </td>
+                                            
+                     </tr>
+                  </tbody>
+            </table>
+        </div>
+                             
+    </article>
+</asp:Content>

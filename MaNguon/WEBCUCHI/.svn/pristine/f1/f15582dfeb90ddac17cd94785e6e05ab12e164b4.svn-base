@@ -1,0 +1,38 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Admin/pageAdmin.Master" AutoEventWireup="true" CodeBehind="frHSSV_Dautrang.aspx.cs" Inherits="WebSchool.web.Admin.frHSSV_Dautrang" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <article class="art-post art-article">
+                <asp:Panel ID="pnSlide01" runat="server">
+                    <h2 class="art-postheader">THAY ĐỔI HEADER CÔNG TÁC SINH VIÊN</h2>
+                    <div class="art-postcontent art-postcontent-0 clearfix"><p><br/></p>
+                        <table class="art-article" style="width: 100%; ">
+                                            <tbody>
+                                               
+                                                <tr><td style="width: 14%; ">Chọn file (.JPG):</td>
+                                                    <td style="width: 50%; " ><asp:FileUpload ID="upfile1" runat="server" ToolTip="Tải file đính kèm" Width="30%"/>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Bạn chưa chọn file cần up" ControlToValidate="upfile1" ForeColor="Red"></asp:RequiredFieldValidator>
+                                                    </td>
+
+                                                </tr>
+                                                                             
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <asp:Button ID="bt_savefile" Text="Thêm file đính kèm" runat="server" CssClass="art-button" OnClick="bt_savefile_Click" />
+                                                        &nbsp
+                                                        <input id="Button2" type="button" value="Hủy" onclick = "history.back()"  class="art-button" />
+                                                    </td>
+                                                </tr>                       
+                                            </tbody>
+
+                                        </table>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="pnResult" runat="server">
+                     <h2 class="art-postheader" style="color:red">THAY ĐỔI THÀNH CÔNG</h2>
+                    <div class="art-postcontent art-postcontent-0 clearfix"><p><br/></p>
+                    </div>
+                </asp:Panel>
+              </article>
+</asp:Content>

@@ -1,0 +1,63 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using WebSchool.DAO;
+
+namespace WebSchool.BUS
+{
+    public class PermissionServices
+    {
+        public static PermissionController db = new PermissionController();
+
+        #region[Permission_Insert]
+        public void Permission_Insert(PermissionInfo data)
+        {
+            db.Permission_Insert(data);
+        }
+        #endregion
+
+        #region[Permission_Update]
+        public void Permission_Update(PermissionInfo data)
+        {
+            db.Permission_Update(data);
+        }
+        #endregion
+
+        #region[Permission_Delete]
+        public void Permission_Delete(string Id)
+        {
+            db.Permission_Delete(Id);
+        }
+        #endregion
+
+        #region[Permission_GetByAll]
+        public DataTable Permission_GetByAll()
+        {
+            return db.Permission_GetByAll();
+        }
+        #endregion
+
+        #region[Permission_Account_GetByGroup]
+        public DataTable Permission_Account_GetByGroup(string UserName)
+        {
+            return db.sp_Permission_Account_GetByGroup(UserName);
+        }
+        #endregion
+
+        #region[Permission_GetByUserName]
+        public DataTable Permission_GetByUserName(string UserName)
+        {
+            return db.Permission_GetByUserName(UserName);
+        }
+        #endregion
+
+        #region[Permission_GetByID]
+        public DataTable Permission_GetByID(string ID)
+        {
+            return db.Permission_GetByUserName(ID);
+        }
+        #endregion
+    }
+}

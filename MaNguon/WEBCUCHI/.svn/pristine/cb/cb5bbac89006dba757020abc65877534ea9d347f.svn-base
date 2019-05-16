@@ -1,0 +1,116 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+
+namespace WebSchool.DAO
+{
+    public class AccountController : SqlDataProvider
+    {
+        #region[Account_Insert]
+        public void Account_Insert(AccountInfo data)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Account_Insert", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", data.Username));
+                cmd.Parameters.Add(new SqlParameter("@Password", data.Password));
+                cmd.Parameters.Add(new SqlParameter("@fullname", data.fullname));
+                cmd.Parameters.Add(new SqlParameter("@gioitinh", data.gioitinh));
+                cmd.Parameters.Add(new SqlParameter("@ngaysinh", data.ngaysinh));
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region[Account_Update]
+        public void Account_Update(AccountInfo data)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Account_Update", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", data.Username));
+
+                cmd.Parameters.Add(new SqlParameter("@fullname", data.fullname));
+                cmd.Parameters.Add(new SqlParameter("@gioitinh", data.gioitinh));
+                cmd.Parameters.Add(new SqlParameter("@ngaysinh", data.ngaysinh));
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region[Account_Delete]
+        public void Account_Delete(string Id)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Account_Delete", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", Id));
+                cmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+        #region[Account_GetByAll]
+        public DataTable Account_GetByAll()
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Account_GetByAll", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+        #endregion
+
+        #region[Account_GetByUserName]
+        public DataTable Account_GetByUserName(string UserName)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Account_GetByUserName", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", UserName));
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+        #endregion
+
+        #region[Account_CheckLogin]
+        public int Account_CheckLogin(string UserName, string PassWord)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_Account_CheckLogin", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@Username", UserName));
+                cmd.Parameters.Add(new SqlParameter("@PassWord", PassWord));
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count >= 1)
+                    return 1;
+                else
+                    return -1;
+            }
+        }
+        #endregion
+
+        #region[Account_ChangePassWord]
+        public void Account_ChangePassWord(string UserName, string NewPassword)
+        {
+            using (SqlCommand dbCmd = new SqlCommand("sp_Account_ChangePassWord", GetConnection()))
+            {
+                dbCmd.CommandType = CommandType.StoredProcedure;
+                dbCmd.Parameters.Add(new SqlParameter("@Username", UserName));
+                dbCmd.Parameters.Add(new SqlParameter("@Password", NewPassword));
+                dbCmd.ExecuteNonQuery();
+            }
+        }
+        #endregion
+    }
+}

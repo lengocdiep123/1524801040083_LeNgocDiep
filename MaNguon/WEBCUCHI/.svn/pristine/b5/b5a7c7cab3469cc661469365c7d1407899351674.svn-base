@@ -1,0 +1,212 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Admin/pageAdmin.Master" AutoEventWireup="true" CodeBehind="frT_Taikhoan.aspx.cs" Inherits="WebSchool.web.Admin.frT_Taikhoan" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <article class="art-post art-article">
+        <div class="art-postmetadataheader">
+            <h2 class="art-postheader">TÀI KHOẢN</h2>
+        </div>
+        <div class="art-postcontent art-postcontent-0 clearfix">
+            <div class="art-content-layout layout-item-0">
+                <div class="art-content-layout-row">
+                    <div class="art-layout-cell" style="width: 100%" >
+                    <asp:Panel ID="pnDangky" runat="server">
+                        <p><span style="font-size: 18px;padding-left: 25px;"><b>ĐĂNG KÝ TÀI KHOẢN</b></span></p>
+                        <table class="art-article" style="width: 40%; border:none">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; vertical-align: middle; ">
+                                        <span style="font-size: 14px;">Họ và tên tài khoản:</span>
+
+                                    </td>
+                                    <td style="width: 50%; text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                                        <asp:TextBox ID="txtFullname" runat="server"></asp:TextBox>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                                            <span style="font-size: 14px;">Tên đăng nhập:<br/></span>
+
+                                    </td>
+                                    <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                                        <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                                        <span style="font-size: 14px;">Mật khẩu:<br/></span>
+
+                                    </td>
+                                    <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                                        <span style="font-size: 14px;">Giới tính:</span>
+
+                                    </td>
+                                    <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px;">
+                                        <asp:DropDownList ID="ddlGioitinh" runat="server" Width="40%" Height="25px">
+                                            <asp:ListItem Value="0">Nữ</asp:ListItem>
+                                            <asp:ListItem value="1">Nam</asp:ListItem>
+                                            
+                                        </asp:DropDownList>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                                        <span style="font-size: 14px;">Ngày sinh:</span>
+
+                                    </td>
+                                    <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                                        <asp:TextBox ID="txtNgaysinh" runat="server" TextMode="Date"></asp:TextBox>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; text-align:center">
+                                      <asp:Button ID="btDangky" runat="server" Text="  Đăng kí  " CssClass="art-button" OnClick="btDangky_Click"/>
+                                       &nbsp
+                                       <input id="Button3" type="button" value="Hủy" onclick = "history.back()"  class="art-button" />
+                                    </td>
+                              
+                                </tr>
+                            </tbody>
+
+                        </table>
+                     </asp:Panel>
+                        
+                        <asp:Panel ID="pnList"   runat="server">
+                            <p><span style="font-size: 18px;padding-left: 25px;"><b>DANH SÁCH TÀI KHOẢN</b></span></p>
+                            <asp:Button ID="btTaouser" runat="server" Text="Tạo tài khoản" OnClick="btTaouser_Click" CssClass="art-button"/>
+                            <asp:DataGrid ID="grdList" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%" Font-Bold="False" 
+                            Font-Italic="False" Font-Overline="False" Font-Size="14px" Font-Strikeout="False" Font-Underline="False" onpageindexchanged="grdList_PageIndexChanged" AllowPaging="True" PageSize="25" OnItemCommand="grdList_ItemCommand">
+                            <AlternatingItemStyle BackColor="White" />
+                            <HeaderStyle CssClass="trHeader" Font-Italic="False" Font-Overline="False" Font-Size="12px" Font-Strikeout="False" Font-Underline="False">
+
+                            </HeaderStyle>
+                                <Columns>
+                                    <asp:BoundColumn DataField="Fullname" HeaderText="Họ và tên"></asp:BoundColumn>
+                                    <asp:BoundColumn DataField="Username" HeaderText="Tài khoản"></asp:BoundColumn>                             
+                                    <asp:TemplateColumn HeaderText="Giới tính">
+                                        <ItemTemplate>
+                                            <%#gioitinh(Eval("gioitinh").ToString()) %>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="5%" />
+                                    </asp:TemplateColumn>
+                                    <asp:TemplateColumn>
+                                        <HeaderTemplate>Ngày sinh</HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%#WebSchool.Common.DateTimeClass.ConvertDate(Eval("ngaysinh").ToString(),"dd/MM/yyyy") %>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="8%" />
+                                    </asp:TemplateColumn>
+
+                                    <asp:TemplateColumn HeaderText="Cấp quyền">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lbtQuyen" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"Username")%>' CommandName="Listfile">Xem quyền</asp:LinkButton>
+
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="8%" />
+                                    </asp:TemplateColumn>
+                                    
+                                    <asp:TemplateColumn HeaderText="Chức năng">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"Username")%>' CommandName="Change" ToolTip="Đổi mật khẩu">Đổi mật khẩu</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtedit" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"Username")%>' CommandName="Edit" ToolTip="Sửa">Edit</asp:LinkButton>
+                                            <%--<asp:LinkButton ID="lbtdelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"Username")%>' CommandName="Delete" ToolTip="Xóa" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa không?');">Delete</asp:LinkButton>--%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="15%" />
+                                    </asp:TemplateColumn>
+                                </Columns>
+                                <EditItemStyle BackColor="#2461BF" />
+                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                <ItemStyle BackColor="#EFF3FB" />
+                                <PagerStyle BackColor="#F3F8FE" Font-Bold="true" ForeColor="Blue" HorizontalAlign="Center" Mode="NumericPages" />
+                                <SelectedItemStyle BackColor="#D1D0F1" Font-Bold="true" ForeColor="#33333" />
+                          </asp:DataGrid>
+                        </asp:Panel>
+
+                        <asp:Panel ID="pnPermission" runat="server">
+                            <p><span style="font-size: 18px;padding-left: 25px;"><b>CẤP QUYỀN TRUY CẬP</b></span></p>
+                            <p>Tài khoản: <asp:Label ID="lbUsername" runat="server"></asp:Label></p>
+                            <asp:Button ID="btCapquyen" runat="server" Text="Cấp quyền" CssClass="art-button" OnClick="btCapquyen_Click"/>
+                            
+                            <asp:DropDownList ID="ddlQuyen" runat="server" Width="40%" Height="25px" DataSourceID="SqlDataGroup" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
+
+                            <asp:SqlDataSource ID="SqlDataGroup" runat="server" ConnectionString="<%$ ConnectionStrings:websiteschoolConnectionString%>" SelectCommand="SELECT * FROM [GroupUsers]"></asp:SqlDataSource>
+                  
+                            <asp:DataGrid ID="grdListquyen" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%" Font-Bold="False" 
+                            Font-Italic="False" Font-Overline="False" Font-Size="14px" Font-Strikeout="False" Font-Underline="False" AllowPaging="True" PageSize="15" OnItemCommand="grdListquyen_ItemCommand">
+                            <AlternatingItemStyle BackColor="White" />
+                            <HeaderStyle CssClass="trHeader" Font-Italic="False" Font-Overline="False" Font-Size="12px" Font-Strikeout="False" Font-Underline="False">
+
+                            </HeaderStyle>
+                                <Columns>
+                                    <asp:BoundColumn DataField="Username" HeaderText="Tài khoản"></asp:BoundColumn>                             
+                                    <asp:BoundColumn DataField="Name" HeaderText="Quyền"></asp:BoundColumn>
+                                    <asp:TemplateColumn HeaderText="Chức năng">
+                                        <ItemTemplate>
+                                            
+                                            <asp:LinkButton ID="lbtdelete" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"ID")%>' CommandName="Delete" ToolTip="Xóa" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa không?');">Delete</asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateColumn>
+                                </Columns>
+                                <EditItemStyle BackColor="#2461BF" />
+                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                <ItemStyle BackColor="#EFF3FB" />
+                                <PagerStyle BackColor="#F3F8FE" Font-Bold="true" ForeColor="Blue" HorizontalAlign="Center" Mode="NumericPages" />
+                                <SelectedItemStyle BackColor="#D1D0F1" Font-Bold="true" ForeColor="#33333" />
+                          </asp:DataGrid>
+                        </asp:Panel>
+                        <asp:Panel ID="pnChangepass" runat="server">
+                          <table class="art-article" style="width: 40%; border:none">
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; vertical-align: middle; ">
+                                        <span style="font-size: 14px;">Họ và tên tài khoản:</span>
+
+                                    </td>
+                                    <td style="width: 50%; text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                                        <asp:TextBox ID="txtUserChange" runat="server"></asp:TextBox>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; vertical-align: middle; ">
+                                        <span style="font-size: 14px;">Nhập mật khẩu mới:</span>
+
+                                    </td>
+                                    <td style="width: 50%; text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                                        <asp:TextBox ID="txtPassChange" runat="server"></asp:TextBox>
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; text-align:center">
+                                      <asp:Button ID="btChangepass" runat="server" Text="  Đổi mật khẩu  " CssClass="art-button" OnClick="btChangepass_Click"/>
+                                       &nbsp
+                                       <input id="Button2" type="button" value="Hủy" onclick = "history.back()"  class="art-button" />
+                                    </td>
+                              
+                                </tr>
+                                </tbody>
+                              </table>
+                        </asp:Panel>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+</article>
+</asp:Content>

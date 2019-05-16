@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using WebSchool.BUS;
+using WebSchool.Common;
+using WebSchool.DAO;
+
+namespace WebSchool.web.Tuyensinh
+{
+    public partial class TS_Dangkitructuyen : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                HtmlHead headTag = (HtmlHead)this.Header;
+                headTag.Title = "Đăng ký trực tuyến - Trường Trung Cấp Nghề Củ Chi";
+                pnRegister.Visible = true;
+                pnResult.Visible = false;
+
+                DataTable dt = TSNganhhocServices.db.TSNganhhoc_GetByTop("", "", "");
+                int i = 1;
+                ddlNV2.Items.Insert(0, new ListItem("Chọn nguyện vọng 2", "0"));
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow r in dt.Rows)
+                    {
+                        ddlNV2.Items.Insert(i++, new ListItem(r["Name"].ToString(), r["ID"].ToString()));
+                    }
+                }
+
+                int Namdangki = DateTime.Now.Year;
+                DataTable dtNam = TSNamdangkiServices.db.TSNamdangki_GetByTop("", "", "ID DESC");
+                int Nam = Namdangki;
+                if (dtNam.Rows.Count > 0)
+                {
+                    Nam = Convert.ToInt16(dtNam.Rows[0]["NameNamdangki"].ToString());
+                }
+                
+                if (Namdangki > Nam)
+                {
+                    TSNamdangkiInfo objNam = new TSNamdangkiInfo();
+                    objNam.NameNamdangki = Namdangki.ToString();
+                    TSNamdangkiServices.db.TSNamdangki_Insert(objNam);
+                }
+            }
+        }
+
+        protected void btDangky_Click(object sender, EventArgs e)
+        {
+            TSDangKiTrucTuyenTinInfo obj = new TSDangKiTrucTuyenTinInfo();
+            obj.hoten = txtHoten.Text;
+            obj.gioitinh = rdbPhai.SelectedValue;
+            obj.ngaysinh = DateTime.Parse(txtNgaysinh.Text);
+            obj.IDNoisinh = ddlNoisinh.SelectedValue;
+            obj.IDDantoc = ddlDantoc.SelectedValue;
+            obj.cmnd = txtCMND.Text;
+            obj.Hokhauthuongtru = txtHokhau.Text;
+            obj.Choohiennay = txtChoohiennay.Text;
+            obj.NamTotnghiepTHCS = txtTNTHCS.Text;
+            obj.NamTotnghiepTHPT = txtTNTHPT.Text;
+            obj.TruongTotnghiepTrunghoc = txtTruongTN.Text;
+            obj.IDDoituonguutien = ddlDoituonguutien.SelectedValue;
+            obj.IDNguyenvong1 = ddlNV1.SelectedValue;
+            obj.IDNguyenvong2 = ddlNV2.SelectedValue;
+            obj.Thoigianhoc = rdbTGHoc.SelectedValue;
+
+            obj.ChaHoten = txtChaHoten.Text;
+            obj.ChaNamsinh = txtChaNS.Text;
+            obj.ChaDienthoai = txtChaDT.Text;
+
+            obj.MeHoten = txtMeHoten.Text;
+            obj.MeNamsinh = txtMeNS.Text;
+            obj.MeDienthoai = txtMeDT.Text;
+
+            obj.Hotennhanthu = txtHotennhanthu.Text;
+            obj.Diachinhanthu = txtDiachinhanthu.Text;
+            obj.Dienthoainhanthu = txtDienthoainhanthu.Text;
+
+            DataTable dtNam = TSNamdangkiServices.db.TSNamdangki_GetByTop("", "", "ID DESC");
+            obj.IDNamdangki = dtNam.Rows[0]["ID"].ToString();
+
+            obj.NgayDK = DateTime.Today;
+            TSDangKiTrucTuyenTinServiecs.db.TSDangKiTrucTuyenTintuc_Insert(obj);
+
+            pnRegister.Visible = false;
+            pnResult.Visible = true;
+        }
+    }
+}

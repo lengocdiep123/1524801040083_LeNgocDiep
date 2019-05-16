@@ -1,0 +1,84 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+
+namespace WebSchool.DAO
+{
+    public class TSDangKiTrucTuyenTinController : SqlDataProvider
+    {
+        #region[TSDangKiTrucTuyenTintuc_Insert]
+        public void TSDangKiTrucTuyenTintuc_Insert(TSDangKiTrucTuyenTinInfo data)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_TSDangkitructuyen_Insert", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@hoten", data.hoten));
+                cmd.Parameters.Add(new SqlParameter("@ngaysinh", data.ngaysinh));
+                cmd.Parameters.Add(new SqlParameter("@gioitinh", data.gioitinh));
+                
+                cmd.Parameters.Add(new SqlParameter("@IDNoisinh", data.IDNoisinh));
+                cmd.Parameters.Add(new SqlParameter("@IDDantoc", data.IDDantoc));
+                cmd.Parameters.Add(new SqlParameter("@cmnd", data.cmnd));
+                cmd.Parameters.Add(new SqlParameter("@Hokhauthuongtru", data.Hokhauthuongtru));
+                cmd.Parameters.Add(new SqlParameter("@Choohiennay", data.Choohiennay));
+                cmd.Parameters.Add(new SqlParameter("@NamTotnghiepTHCS ", data.NamTotnghiepTHCS ));
+                cmd.Parameters.Add(new SqlParameter("@NamTotnghiepTHPT", data.NamTotnghiepTHPT));
+                cmd.Parameters.Add(new SqlParameter("@TruongTotnghiepTrunghoc", data.TruongTotnghiepTrunghoc));
+                cmd.Parameters.Add(new SqlParameter("@IDDoituonguutien", data.IDDoituonguutien));
+                cmd.Parameters.Add(new SqlParameter("@IDNguyenvong1", data.IDNguyenvong1));
+                cmd.Parameters.Add(new SqlParameter("@IDNguyenvong2", data.IDNguyenvong2));
+                cmd.Parameters.Add(new SqlParameter("@Thoigianhoc", data.Thoigianhoc));
+                cmd.Parameters.Add(new SqlParameter("@ChaHoten", data.ChaHoten));
+                cmd.Parameters.Add(new SqlParameter("@ChaNamsinh", data.ChaNamsinh));
+                cmd.Parameters.Add(new SqlParameter("@ChaDienthoai", data.ChaDienthoai));
+                cmd.Parameters.Add(new SqlParameter("@MeHoten", data.MeHoten));
+                cmd.Parameters.Add(new SqlParameter("@MeNamsinh", data.MeNamsinh));
+
+                cmd.Parameters.Add(new SqlParameter("@MeDienthoai", data.MeDienthoai));
+                cmd.Parameters.Add(new SqlParameter("@Hotennhanthu", data.Hotennhanthu));
+                cmd.Parameters.Add(new SqlParameter("@Diachinhanthu", data.Diachinhanthu));
+                cmd.Parameters.Add(new SqlParameter("@Dienthoainhanthu", data.Dienthoainhanthu));
+
+                cmd.Parameters.Add(new SqlParameter("@NgayDK", data.NgayDK));
+                cmd.Parameters.Add(new SqlParameter("@IDNamdangki", data.IDNamdangki));
+
+                cmd.ExecuteNonQuery();
+      
+            }
+        }
+        #endregion
+
+       
+        #region[TSDangKiTrucTuyenTintuc_GetbyAll]
+        public DataTable TSDangKiTrucTuyenTintuc_GetbyAll()
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_TSDangKiTrucTuyen_GetByAll", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+        #endregion
+
+        #region[TSDangkitructuyen_GetByIDNamdangki]
+        public DataTable TSDangkitructuyen_GetByIDNamdangki(string IDNamdangki)
+        {
+            using (SqlCommand cmd = new SqlCommand("sp_TSDangkitructuyen_GetByIDNamdangki", GetConnection()))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add(new SqlParameter("@IDNamdangki", IDNamdangki));
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+        #endregion
+    }
+}

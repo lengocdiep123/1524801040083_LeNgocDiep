@@ -1,0 +1,133 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using WebSchool.BUS;
+using WebSchool.Common;
+
+namespace WebSchool.web.Admin
+{
+    public partial class frTS_Dangkitructuyen : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["Role"] == null)
+                Response.Redirect("~/web.Admin/Login.aspx");
+
+            if (!IsPostBack)
+            {
+                bindGrid();
+                //pnList.Visible = true;
+             
+            }
+        }
+
+        public string gioitinh(string obj)
+        {
+            if (string.Compare(obj, "True") == 0)
+                return "Nữ";
+            return "Nam";
+        }
+
+        void bindGrid()
+        {
+            DataTable dt = TSDangKiTrucTuyenTinServiecs.db.TSDangKiTrucTuyenTintuc_GetbyAll();
+            if (dt.Rows.Count > 0)
+            {
+                grdList.DataSource = dt;
+                grdList.DataBind();
+            }
+        }
+
+        protected void grdList_ItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            //try
+            //{
+            //    string temp = e.CommandArgument.ToString();
+            //    if (e.CommandName == "Delete")
+            //    {
+            //        TSDangKiTrucTuyenTinServiecs.db.TSDangKiTrucTuyenTintuc_Delete(temp);
+            //        bindGrid();
+            //    }
+            //    else
+            //    {
+            //        pnDetail.Visible = true;
+            //        DataTable dt = TSDangKiTrucTuyenTinServiecs.db.TSDangKiTrucTuyenTintuc_GetByTop("", "ID=" + temp, "");
+            //        dtdetailview.DataSource = dt;
+            //        dtdetailview.DataBind();
+            //    }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    WebMsgBox.Show("Lỗi " + ex.Message);
+            //}
+        }
+
+        protected void btprint_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt = TSDangKiTrucTuyenTinServiecs.db.TSDangkitructuyen_GetByIDNamdangki(ddlNamDK.SelectedValue);
+            if (dt != null)
+            {
+                DTToExcel(dt);
+            }
+            else
+                WebMsgBox.Show("Lỗi database");
+        }
+
+        public void DTToExcel(DataTable dt)
+        {
+
+            string FileName = "Export_DSDK";
+
+            FileInfo f = new FileInfo(Server.MapPath("Downloads") + string.Format("\\{0}.xlsx", FileName));
+            if (f.Exists)
+                f.Delete(); // delete the file if it already exist.
+
+            HttpResponse response = HttpContext.Current.Response;
+            response.Clear();
+            response.ClearHeaders();
+            response.ClearContent();
+            response.Charset = Encoding.UTF8.WebName;
+            response.AddHeader("content-disposition", "attachment; filename=" + FileName + ".xls");
+            response.AddHeader("Content-Type", "application/Excel");
+            response.ContentType = "application/vnd.xlsx";
+            //response.AddHeader("Content-Length", file.Length.ToString());
+            //Encoding UTF-8
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+
+            // create a string writer
+            using (StringWriter sw = new StringWriter())
+            {
+                using (HtmlTextWriter htw = new HtmlTextWriter(sw))
+                {
+                    //instantiate a datagrid
+                    DataGrid dg = new DataGrid();
+
+                    dg.DataSource = dt;
+                    dg.DataBind();
+                    dg.RenderControl(htw);
+
+                    response.Write(sw.ToString());
+                    dg.Dispose();
+                    dt.Dispose();
+                    response.End();
+                }
+            }
+        }
+
+        protected void ddlNamDK_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = TSDangKiTrucTuyenTinServiecs.db.TSDangkitructuyen_GetByIDNamdangki(ddlNamDK.SelectedValue);
+            grdList.DataSource = dt;
+            grdList.DataBind();
+        }
+    }
+}

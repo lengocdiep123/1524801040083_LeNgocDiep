@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using WebSchool.DAO;
+
+namespace WebSchool.BUS
+{
+    public class TSNamdangkiServices
+    {
+        public static TSNamdangkiController db = new TSNamdangkiController();
+
+        #region[TSNamdangki_Insert]
+        public void TSNamdangki_Insert(TSNamdangkiInfo data)
+        {
+            db.TSNamdangki_Insert(data);
+        }
+        #endregion
+
+        #region[TSNamdangki_GetByTop]
+        public DataTable TSNamdangki_GetByTop(string Top, string Where, String Order)
+        {
+            return db.TSNamdangki_GetByTop(Top, Where, Order);
+        }
+        #endregion
+    }
+}

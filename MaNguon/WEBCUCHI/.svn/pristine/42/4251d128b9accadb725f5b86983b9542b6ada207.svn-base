@@ -1,0 +1,66 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Admin/pageAdmin.Master" AutoEventWireup="true" CodeBehind="frTS_DanhmucNganh.aspx.cs" Inherits="WebSchool.web.Admin.frTS_DanhmucNganh" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <article class="art-post art-article">
+        <h2 class="art-postheader"><asp:Label ID="lbTieude" runat="server"></asp:Label></h2>
+            <div class="art-postcontent art-postcontent-0 clearfix">
+			    <br/>
+            <asp:Panel ID="pnCreate" runat="server">
+				<table class="art-article" style="width: 70%; ">
+				    <tbody>
+				       
+                        <tr>
+                            <td style="width: 20%; ">Tên ngành học:
+
+                            </td>
+                            <td style="width: 70%; ">
+                                <asp:TextBox ID="txtTenNganh" runat="server"></asp:TextBox>
+                            </td>
+
+                        </tr>
+                       
+                        <tr>
+                            <td style="width: 100%; " colspan="2">
+                                <asp:Button ID="btSave" runat="server" Text="Lưu" CssClass="art-button" OnClick="btSave_Click" />
+                                &nbsp
+                                       <input id="Button3" type="button" value="Hủy" onclick = "history.back()"  class="art-button" />
+                            </td>
+                        </tr>
+				    </tbody>
+				</table>
+		</asp:Panel>
+        <asp:Panel ID="pnList" runat="server">
+            <asp:Button ID="bt_new" runat="server" Text="Tạo tên ngành mới" CssClass="art-button" OnClick="bt_new_Click"/>
+            <br />
+            <asp:DataGrid ID="grdList" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%" Font-Bold="False" 
+                            Font-Italic="False" Font-Overline="False" Font-Size="14px" Font-Strikeout="False" Font-Underline="False" 
+                            onpageindexchanged="grdList_PageIndexChanged" AllowPaging="True" PageSize="18" OnItemCommand="grdList_ItemCommand">
+                            <AlternatingItemStyle BackColor="White" />
+                            <HeaderStyle CssClass="trHeader" Font-Italic="False" Font-Overline="False" Font-Size="12px" Font-Strikeout="False" Font-Underline="False">
+
+                            </HeaderStyle>
+                <Columns>
+                    <asp:BoundColumn DataField="ID" Visible="false"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="Name" HeaderText="Tên ngành học"></asp:BoundColumn>
+                
+                    <asp:TemplateColumn HeaderText="Chức năng">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lbt_editlistnews" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"ID")%>' CommandName="Edit" ToolTip="Sửa">Edit</asp:LinkButton>
+                            <asp:LinkButton ID="lbt_deletelistnews" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"ID")%>' CommandName="Delete" ToolTip="Xóa" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa không?');">Delete</asp:LinkButton>
+                        </ItemTemplate>
+                        <HeaderStyle Width="8%" />
+                    </asp:TemplateColumn>
+                </Columns>
+                <EditItemStyle BackColor="#2461BF" />
+                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                <ItemStyle BackColor="#EFF3FB" />
+                <PagerStyle BackColor="#F3F8FE" Font-Bold="true" ForeColor="Blue" HorizontalAlign="Center" Mode="NumericPages" />
+                <SelectedItemStyle BackColor="#D1D0F1" Font-Bold="true" ForeColor="#33333" />
+            </asp:DataGrid>
+        </asp:Panel>
+        </div>
+       <asp:Label ID="txttmp" runat="server" Visible="false"></asp:Label>
+    </article>
+</asp:Content>

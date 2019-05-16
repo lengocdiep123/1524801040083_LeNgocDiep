@@ -1,0 +1,106 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="webAdmin.master.cs" Inherits="WebSchool.web.Admin.webAdmin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Admin</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+     <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width" />
+
+    <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" href="style.css" media="screen" />
+    <!--[if lte IE 7]><link rel="stylesheet" href="style.ie7.css" media="screen" /><![endif]-->
+    <link rel="stylesheet" href="style.responsive.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="uploadify.css" />
+
+
+    <script src="jquery.js"></script>
+    <script src="script.js"></script>
+    <script src="script.responsive.js"></script>
+    <script src="jquery-1.8.3.js"></script>
+    <script src="jquery-ui.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>   
+    <script src="library.full.js"></script>
+
+    <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+
+    <%--Syntaxhighlight--%>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shCore.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushA3.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushBash.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushColdFusion.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushCpp.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushCSharp.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushCss.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushDelphi.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushDiff.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushErlang.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushGroovy.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushJava.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushJavaFX.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushPerl.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushPhp.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushPlain.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushPowerShell.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushPython.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushRuby.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushScala.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushSql.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushVb.js"></script>
+    <script type="text/javascript" src="ckeditor/plugins/syntaxhighlight/scripts/shBrushXml.js"></script>
+    <link type="text/css" rel="stylesheet" href="ckeditor/plugins/syntaxhighlight/styles/shCore.css" />
+    <link type="text/css" rel="stylesheet" href="ckeditor/plugins/syntaxhighlight/styles/shThemeDefault.css" />
+    <script type="text/javascript">
+        SyntaxHighlighter.all();
+    </script>
+   <%--Syntaxhighlight--%>
+
+
+<style>.art-content .art-postcontent-0 .layout-item-0 { padding-right: 10px;padding-left: 10px;  }
+.ie7 .art-post .art-layout-cell {border:none !important; padding:0 !important; }
+.ie6 .art-post .art-layout-cell {border:none !important; padding:0 !important; }
+
+</style>
+</head>
+<body>
+<div id="art-main">
+    <header class="art-header">
+        <div class="art-shapes">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <p style="text-align:right;"><asp:Label ID="lbXinchao" runat="server" Font-Bold="false" Font-Italic="true"></asp:Label><asp:Label ID="lbName" runat="server" Font-Bold="true" Font-Italic="true" ForeColor="Blue"></asp:Label></p>
+        </div>
+       
+
+        <h1 class="art-headline"><a>PAGE ADMIN</a></h1>
+        
+    </header>
+<div class="art-sheet clearfix">
+    <div class="art-layout-wrapper">
+                            <form id="form1" runat="server">
+                                <div>
+                                    <p style="text-align:right"><asp:LinkButton ID="lbt_Admin" runat="server" Font-Bold="true" Font-Italic="true" Visible="false" OnClick="lbt_Admin_Click" Text="Trở về trang admin" CssClass="active"></asp:LinkButton> &nbsp&nbsp <asp:LinkButton ID="lbt_logout" runat="server" Font-Bold="true" Font-Italic="true" OnClick="lbt_logout_Click" Text="Đăng xuất" CssClass="active"></asp:LinkButton> &nbsp&nbsp<a href="doimatkhau.aspx"><b><i>Đổi mật khẩu</i></b></a></p>
+                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                                    </asp:ContentPlaceHolder>
+                                </div>
+                            </form>
+       </div>
+    <footer class="art-footer"><p>Copyright © 2018. All Rights Reserved.<br/></p></footer>
+
+    </div>
+    <p class="art-page-footer"><span id="art-footnote-links">Design by James</span>
+    </p>
+</div>
+
+</body>
+</html>

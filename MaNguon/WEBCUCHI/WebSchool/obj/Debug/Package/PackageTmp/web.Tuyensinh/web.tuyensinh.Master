@@ -1,0 +1,207 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="web.tuyensinh.Master.cs" Inherits="WebSchool.web.Tuyensinh.tuyensinh" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head id="Head1" runat="server">
+    <title>Trường Cao Đẳng Nghề Hồ Chí Minh</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <%-- Code --%>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width" />
+
+    <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" href="style.css" media="screen" />
+    <!--[if lte IE 7]><link rel="stylesheet" href="style.ie7.css" media="screen" /><![endif]-->
+    <link rel="stylesheet" href="style.responsive.css" media="all" />
+
+
+    <script src="jquery.js"></script>
+    <script src="script.js"></script>
+    <script src="script.responsive.js"></script>
+
+
+
+<style>.art-content .art-postcontent-0 .layout-item-0 { border-top-width:1px;border-top-style:solid;border-top-color:#CFD8E2;margin-top: 10px;margin-bottom: 10px;  }
+.art-content .art-postcontent-0 .layout-item-1 { border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-left-style:solid;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-top-color:#CFD8E2;border-right-color:#CFD8E2;border-bottom-color:#CFD8E2;border-left-color:#CFD8E2; padding-right: 10px;padding-left: 10px;  }
+.art-content .art-postcontent-0 .layout-item-2 { padding-right: 10px;padding-left: 10px;  }
+.ie7 .art-post .art-layout-cell {border:none !important; padding:0 !important; }
+.ie6 .art-post .art-layout-cell {border:none !important; padding:0 !important; }
+
+</style>
+
+</head>
+<body>
+    <%-- Code --%>
+
+<div id="art-main">
+    <div class="art-sheet clearfix">
+<header class="art-header">
+
+    <div class="art-shapes">
+        
+            </div>
+
+
+
+
+
+<div class="art-textblock art-object1704516134">
+    <form class="art-search" name="Search" action="javascript:void(0)">
+    <input type="text" value="" />
+        <input type="submit" value="" name="search" class="art-search-button" />
+        </form>
+</div>
+<nav class="art-nav">
+    <ul class="art-hmenu">
+        <li><a href="trangchu.aspx" class="active">Trang chủ</a>
+            <ul><li><a href="../web.Truong/trangchu.aspx">Trường</a></li><li><a href="Tuyensinh.aspx">Tuyển sinh</a></li>
+            </ul>
+        </li>
+        <li><a href="gioi-thieu.html">Tuyển sinh</a>
+            <ul><li><a href="#">Cao đẳng - Trung cấp</a></li><li><a href="#">Liên thông</a></li><li><a href="#">Lớp ngắn hạn</a></li><li><a href="#">Thông báo</a></li><li><a href="#">Tin tức</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Tư vấn hương nghiệp</a>
+            <ul><li><a href="#">Tư vấn trực tiếp</a></li><li><a href="#">Hướng nghiệp</a></li><li><a href="#">Giới thiệu việc làm</a></li>
+
+            </ul>
+        </li>
+        <li><a href="#">Hồ sơ tuyển sinh</a>
+            <ul><li><a href="#">Cao đẳng</a></li><li><a href="#">Trung cấp</a></li>
+
+            </ul>
+
+        </li>
+        <li><a href="#">Kết quả tuyển sinh</a>
+            <ul><li><a href="#">Cao đẳng</a></li><li><a href="#">Trung cấp</a></li>
+
+            </ul>
+
+        </li>
+        <li><a href="#">Đăng kí trực tuyến</a>
+        </li>
+        <li><a href="#">Hình ảnh</a>
+        </li>
+
+    </ul> 
+
+</nav>
+
+                    
+</header>
+<div class="art-pageslider">
+
+     <div class="art-shapes">
+            </div>
+<div class="art-slider art-slidecontainerpageslider" data-width="1000" data-height="275">
+    <div class="art-slider-inner">
+<div class="art-slide-item art-slidepageslider0">
+
+
+</div>
+<div class="art-slide-item art-slidepageslider1">
+
+
+</div>
+<div class="art-slide-item art-slidepageslider2">
+
+
+</div>
+<div class="art-slide-item art-slidepageslider3">
+
+
+</div>
+
+    </div>
+</div>
+<div class="art-slidenavigator art-slidenavigatorpageslider" data-left="1" data-top="1">
+<a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a>
+</div>
+
+
+</div>
+<div class="art-layout-wrapper">
+                <div class="art-content-layout">
+                    <div class="art-content-layout-row">
+                        <div class="art-layout-cell art-content">
+
+                            <form id="form1" runat="server">
+                                <div>
+                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                                    </asp:ContentPlaceHolder>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="art-layout-cell art-sidebar1">
+                            <div class="art-vmenublock clearfix">
+                                <div class="art-vmenublockcontent">
+                                    <a href="trang-chu.html" class="active">
+                                        <img src="images/banner_dktt.jpg" height="302" />
+                                    </a>
+                                </div>
+
+                                <div class="art-vmenublock clearfix">
+                                    <div class="art-vmenublockheader">
+                                        <h3 class="t">Tin tức mới</h3>
+                                    </div>
+                                    <div class="art-vmenublockcontent">
+                                        <ul class="art-vmenu">
+                                            <li><a>Thông báo 1</a></li>
+                                            <li><a>Thông báo 2</a></li>
+                                            <li><a>Thông báo 3</a></li>
+                                            <li><a>Thông báo 4</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="art-vmenublock clearfix">
+                                    <div class="art-vmenublockheader">
+                                        <h3 class="t">Thời khóa biểu</h3>
+                                    </div>
+                                    <div class="art-vmenublockcontent">
+                                        <ul class="art-vmenu">
+                                            <li><a>Thông báo 1</a></li>
+                                            <li><a>Thông báo 2</a></li>
+                                            <li><a>Thông báo 3</a></li>
+                                            <li><a>Thông báo 4</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+<footer class="art-footer">
+  <div class="art-footer-inner">
+<div class="art-content-layout-wrapper layout-item-0">
+<div class="art-content-layout layout-item-1">
+    <div class="art-content-layout-row">
+    <div class="art-layout-cell layout-item-2" style="width: 30%">
+        <p style="text-align: left;"><span style="font-size: 12px;"><span style="color: #0C69E4;">Cơ sở 1:</span> 235 Hoàng Sa, phường Tân Định, Thành phố Hồ Chí Minh</span><br/></p><p style="text-align: left;"><span style="color: rgb(12, 105, 228); font-size: 12px;">Điện thoại:</span></p><p style="text-align: left;"><span style="color: rgb(12, 105, 228); font-size: 12px;">- Phòng Đào tạo:&nbsp;<span style="color: rgb(48, 63, 80);">(028) 38.438.720 (101-102)</span></span></p><p style="text-align: left;"><span style="color: rgb(12, 105, 228); font-size: 12px;">- Trung tâm tuyển sinh:&nbsp;<span style="color: rgb(48, 63, 80);">(028) 35.267.377</span></span></p><p style="text-align: left;"><span style="color: rgb(12, 105, 228); font-size: 12px;">- Fax:&nbsp;<span style="color: rgb(48, 63, 80);">(028) 38.435.537</span></span></p>
+    </div><div class="art-layout-cell layout-item-3" style="width: 30%">
+        <p style="text-align: left;"><span style="color: rgb(12, 105, 228); font-size: 12px;">Cơ sở 2:&nbsp;</span><span style="font-size: 12px;">co ngu kho số 19A, đường số 17 (48/43 Chương Dương), phường Linh Chiểu, quận Thủ Đức, TP. HCM</span></p><p style="text-align: left;"><span style="color: rgb(12, 105, 228); font-size: 12px;">Điện thoại:</span><span style="font-size: 12px;"><br/></span></p><p style="text-align: left;"><span style="color: rgb(12, 105, 228); font-size: 12px;">P. Tuyển sinh 2:&nbsp;</span><span style="font-size: 12px;">(028) 37.225.782</span><span style="font-size: 12px;"><br/></span></p>
+    </div><div class="art-layout-cell layout-item-3" style="width: 40%">
+        <p style="text-align: left;"><span style="color: rgb(12, 105, 228); font-size: 12px;">Email:</span><span style="font-size: 12px;">&nbsp;cdntphcm@vnn.vn</span></p><p style="text-align: left;"><span style="font-size: 12px; color: #000000;">@ C<span style="color: rgb(0, 0, 0);">opyright</span>&nbsp;© 2018 Trường Cao Đảng Nghề TP. HCM</span></p>
+    </div>
+    </div>
+</div>
+</div>
+
+    <p class="art-page-footer">
+        <span id="art-footnote-links"><a href="../web.Admin/indexadmin.aspx">Link Admin</a></span>
+    </p>
+  </div>
+</footer>
+
+</div>
+
+</body>
+</html>

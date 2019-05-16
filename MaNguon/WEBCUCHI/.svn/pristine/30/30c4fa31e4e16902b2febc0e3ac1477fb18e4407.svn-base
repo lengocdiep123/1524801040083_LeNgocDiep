@@ -1,0 +1,169 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Tuyensinh/web.tuyensinh.Master" AutoEventWireup="true" CodeBehind="TS_Dangkitructuyen.aspx.cs" Inherits="WebSchool.web.Tuyensinh.TS_Dangkitructuyen" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    
+      <article class="art-post art-article">
+        <div class="art-postmetadataheader">
+            <h4 class="art-postheader">ĐĂNG KÝ HỌC NGHỀ</h4>
+                                              
+        </div>
+        <div class="art-postcontent art-postcontent-0 clearfix">
+            
+            <asp:Panel ID="pnRegister" runat="server">
+
+               <div class="art-content-layout">
+                    <div class="art-content-layout-row">
+                        <div class="art-layout-cell layout-item-0" style="width: 100%" >
+                            <h3 style="text-align:center">PHIẾU ĐĂNG KÍ HỌC NGHỀ</h3>
+                            <p><span style="font-weight: bold;">* Lưu ý: các mục đánh (*) sinh viên bắt buộc phải điền</span></p>
+                            <p><span style="font-weight: bold;">1. Đăng ký học nghề trình độ: TRUNG CẤP</span></p>
+                            <p><span style="font-weight: bold;">2. Tên trường đăng ký vào học nghề: TRƯỜNG TRUNG CẤP NGHỀ CỦ CHI</span></p>
+                            <p>Địa chỉ: đường Nguyễn Đại Năng, khu phố 1, Thị trấn Củ Chi, huyện Củ Chi, Tp. Hồ Chí Minh</p>
+                            <p>a. Trường đang đào tạo các nghề(*):<span style="font-style:italic;">(Thí sinh có thể chọn 1 hoặc 2 nguyện vọng bên dưới)</span></p>
+                            <p>Nguyện vọng 1: <asp:DropDownList ID="ddlNV1" runat="server" Width="40%" DataSourceID="SqlTSDKNganhhoc" DataTextField="Name" DataValueField="ID"></asp:DropDownList>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="Vui lòng chọn ngành học" ControlToValidate="ddlNV1" ForeColor="Red"></asp:RequiredFieldValidator></p>
+                            <asp:SqlDataSource runat="server" ID="SqlTSDKNganhhoc" ConnectionString='<%$ ConnectionStrings:websiteschoolConnectionString %>' SelectCommand="SELECT * FROM [TSNganhhoc]">
+                                </asp:SqlDataSource>
+                            <p>Nguyện vọng 2: <asp:DropDownList ID="ddlNV2" runat="server" Width="40%"></asp:DropDownList></p>
+                            <p>b. Đăng kí thời gian học(*):</p>
+                            <p>
+                                <asp:RadioButtonList ID="rdbTGHoc" runat="server">
+                                    <asp:ListItem Selected="True" Value="2">Học 2 năm (chỉ học nghề, không học văn hóa; không liên thông cao đẳng)</asp:ListItem>
+                                    <asp:ListItem Value="3">Học 3 năm (vừa học nghề vừa học văn hóa để có điều kiện liên thông cao đẳng, đại học)</asp:ListItem>
+                                </asp:RadioButtonList>
+                            </p>
+                            <p><span style="font-weight: bold;">3. Họ và tên thí sinh </span><span style="font-style:italic;">(Viết đúng như giấy khai sinh bằng chữ in hoa)</span>(*):
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Vui lòng nhập họ tên" ForeColor="Red" ControlToValidate="txtHoten" Width="25%"></asp:RequiredFieldValidator>
+                            </p>
+                            <p>
+                                <asp:TextBox ID="txtHoten" runat="server"></asp:TextBox>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">4. Giới tính:</span>
+                                <asp:RadioButtonList ID="rdbPhai" runat="server" Width="20%" RepeatDirection="Horizontal">
+                                    <asp:ListItem Selected="True" Value="0">Nam</asp:ListItem>
+                                    <asp:ListItem Value="1">Nữ</asp:ListItem>
+                                </asp:RadioButtonList>
+                            </p>
+                            <p>
+                                    <span style="font-weight: bold;">Ngày, tháng, năm, sinh(*):</span>
+                                    <asp:TextBox ID="txtNgaysinh" runat="server" TextMode="Date" Width="20%"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtNgaysinh" ErrorMessage="Vui lòng nhập ngày sinh" ForeColor="Red"></asp:RequiredFieldValidator>
+                                
+                            </p>
+
+                            <p>
+                                <span style="font-weight: bold;">Nơi sinh (tỉnh/ thành phố)(*):</span>
+                                <asp:DropDownList ID="ddlNoisinh" runat="server" Width="20%" DataSourceID="SqlTSDKNoisinh"  DataTextField="Name" DataValueField="ID">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource runat="server" ID="SqlTSDKNoisinh" ConnectionString='<%$ ConnectionStrings:websiteschoolConnectionString %>' SelectCommand="SELECT * FROM [TSNoisinh]">
+                                </asp:SqlDataSource>
+                                <span style="font-weight: bold;">.Dân tộc(*):</span>
+                                <asp:DropDownList ID="ddlDantoc" runat="server" Width="15%" DataSourceID="SqlTSDKDantoc" DataTextField="Name" DataValueField="ID">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource runat="server" ID="SqlTSDKDantoc" ConnectionString='<%$ ConnectionStrings:websiteschoolConnectionString %>' SelectCommand="SELECT * FROM [TSDantoc]">
+                                </asp:SqlDataSource>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">5. Chứng minh nhân dân/Căn cước công dân số(*):</span>
+                                <asp:TextBox ID="txtCMND" runat="server" Width="20%"></asp:TextBox>
+                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="Vui lòng nhập chứng minh nhân dân" ForeColor="Red" ControlToValidate="txtCMND" Width="20%"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Bạn vui lòng nhập số" ForeColor="Red" ControlToValidate="txtCMND" ValidationExpression="^\d+" Width="10%"></asp:RegularExpressionValidator>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">6. Hộ khẩu thường trú (Số nhà, tên đường, ấp (khu phố), xã (phường), huyện (quận), tỉnh (Thành Phố)(*):</span>
+                                <asp:TextBox ID="txtHokhau" runat="server" ></asp:TextBox>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">7. Chỗ ở hiện nay (Số nhà, tên đường, ấp (khu phố), xã (phường), huyện (quận), tỉnh (Thành Phố)(*):</span>
+                                <asp:TextBox ID="txtChoohiennay" runat="server" ></asp:TextBox>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">8. Năm tốt nghiệp(*):</span>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">Năm tốt nghiệp Trung học cơ sở:</span>
+                                <asp:TextBox ID="txtTNTHCS" runat="server" Width="20%"></asp:TextBox>  
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Bạn vui lòng nhập 4 số" ForeColor="Red" ControlToValidate="txtTNTHCS" ValidationExpression="^\d{4}$" Width="20%"></asp:RegularExpressionValidator>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">Năm tốt nghiệp Trung học phổ thông hoặc tương đương:</span>
+                                <asp:TextBox ID="txtTNTHPT" runat="server" Width="20%"></asp:TextBox>  
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Bạn vui lòng nhập 4 số" ForeColor="Red" ControlToValidate="txtTNTHPT" ValidationExpression="^\d{4}$" Width="20%"></asp:RegularExpressionValidator>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">Tốt nghiệp THCS/THPT tại trường </span><span style="font-style:italic;">(ghi rõ tên trường và địa chỉ trường)</span>:
+                                <asp:TextBox ID="txtTruongTN" runat="server" Width="41%"></asp:TextBox>
+                            </p>
+
+                            <p>
+                                <span style="font-weight: bold;">9. Đối tượng ưu tiên:</span>
+                                <asp:DropDownList ID="ddlDoituonguutien" runat="server" Width="30%" DataSourceID="SqlTSDKDoituonguutien" DataTextField="Name" DataValueField="ID">
+                                </asp:DropDownList>
+                                 <asp:SqlDataSource runat="server" ID="SqlTSDKDoituonguutien" ConnectionString='<%$ ConnectionStrings:websiteschoolConnectionString %>' SelectCommand="SELECT * FROM [TSDoituonguutien]">
+                                </asp:SqlDataSource>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">10. Họ và tên cha:</span>
+                                <asp:TextBox ID="txtChaHoten" runat="server" Width="40%"></asp:TextBox>
+                            </p>
+                            <p>
+                                Năm sinh:
+                                <asp:TextBox ID="txtChaNS" runat="server" Width="10%"></asp:TextBox>  
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator6" runat="server" ErrorMessage="Bạn vui lòng nhập 4 số" ForeColor="Red" ControlToValidate="txtChaNS" ValidationExpression="^\d{4}$" Width="25%"></asp:RegularExpressionValidator>
+                                Điện thoại:
+                                <asp:TextBox ID="txtChaDT" runat="server" Width="20%"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ErrorMessage="VD: 0879123456" ForeColor="Red" ControlToValidate="txtChaDT" ValidationExpression="(\+84|0)\d{9,10}" Width="25%"></asp:RegularExpressionValidator>
+                            </p>
+
+                            <p>
+                                <span style="font-weight: bold;">10. Họ và tên mẹ</span>
+                                <asp:TextBox ID="txtMeHoten" runat="server" Width="40%"></asp:TextBox>
+                            </p>
+                            <p>
+                                Năm sinh:
+                                <asp:TextBox ID="txtMeNS" runat="server" Width="10%"></asp:TextBox>  
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator8" runat="server" ErrorMessage="Bạn vui lòng nhập 4 số" ForeColor="Red" ControlToValidate="txtMeNS" ValidationExpression="^\d{4}$" Width="25%"></asp:RegularExpressionValidator>
+                                Điện thoại:
+                                <asp:TextBox ID="txtMeDT" runat="server" Width="20%"></asp:TextBox>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator9" runat="server" ErrorMessage="VD: 0879123456" ForeColor="Red" ControlToValidate="txtMeDT" ValidationExpression="(\+84|0)\d{9,10}" Width="25%"></asp:RegularExpressionValidator>
+                            </p>
+                            <p>
+                                <span style="font-weight: bold;">12. Gửi giấy báo kết quả trúng tuyển cho người nhận:</span>
+                            </p>
+                            <p>
+                                Họ và tên người nhận(*):
+                                <asp:TextBox ID="txtHotennhanthu" runat="server" Width="40%"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Vui lòng nhập họ tên" ForeColor="Red" ControlToValidate="txtHotennhanthu" Width="25%"></asp:RequiredFieldValidator>
+                            </p>
+                            <p>
+                                Địa chỉ nhận thư (Số nhà, tên đường, ấp (khu phố), xã (phường), huyện (quận), tỉnh (Thành Phố)(*):
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Vui lòng nhập địa chỉ" ForeColor="Red" ControlToValidate="txtDiachinhanthu" Width="25%"></asp:RequiredFieldValidator>
+                                <asp:TextBox ID="txtDiachinhanthu" runat="server" ></asp:TextBox>
+                            </p>
+                            <p>
+                                Điện thoại liên lạc:(*):
+                                <asp:TextBox ID="txtDienthoainhanthu" runat="server" Width="20%"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Vui lòng nhập điện thoại" ForeColor="Red" ControlToValidate="txtDienthoainhanthu" Width="25%"></asp:RequiredFieldValidator>
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="VD: 0879123456" ForeColor="Red" ControlToValidate="txtDienthoainhanthu" ValidationExpression="(\+84|0)\d{9,10}" Width="25%"></asp:RegularExpressionValidator>
+                            </p>
+                            <p>
+                                Tôi xin cam đoan những lời khai của tôi trên phiếu đăng kí này là đúng sự thật. Nếu sai, tôi hoàn toàn chịu trách nhiệm và bị xử lý theo quy chế tuyển sinh học nghề hiện hành./.
+                            </p>
+                            <p style="text-align:center">
+                                <asp:Button ID="btDangky" runat="server" Text="Đăng ký" CssClass="art-button" OnClick="btDangky_Click"/>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </asp:Panel>
+
+            <asp:Panel ID="pnResult" runat="server">
+                <p style="text-align:center; font-size:x-large;"><span style="font-weight: bold;">Đăng ký thành công</span></p>
+            </asp:Panel>
+        </div>
+    </article>
+</asp:Content>

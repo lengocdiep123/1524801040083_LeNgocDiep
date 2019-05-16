@@ -1,0 +1,60 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Admin/pageAdmin.Master" AutoEventWireup="true" CodeBehind="frTS_Dangkitructuyen.aspx.cs" Inherits="WebSchool.web.Admin.frTS_Dangkitructuyen" %>
+
+<%--<%@ Register Assembly="PdfViewer" Namespace="PdfViewer" TagPrefix="cc1" %>--%>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <article class="art-post art-article">
+                <asp:Panel ID="pnList" runat="server">
+                    <h2 class="art-postheader"><strong>DANH SÁCH ĐĂNG KÝ TUYỂN SINH TRỰC TUYẾN</strong></h2>
+                    <div class="art-postcontent art-postcontent-0 clearfix"><p><br/></p>
+                        <asp:Button ID="btprint" runat="server" Text="xuất danh sách Excel" CssClass="art-button" OnClick="btprint_Click"/>
+                        
+                        <br />
+                        <p><a><span style="font-weight: bold; font-size: 14px; color: #7D2B03;">Chọn năm đăng kí:&nbsp;</span><asp:DropDownList ID="ddlNamDK" runat="server" DataSourceID="SqlNamDK" DataTextField="NameNamdangki" DataValueField="ID" Width="89px" AutoPostBack="True" OnSelectedIndexChanged="ddlNamDK_SelectedIndexChanged"></asp:DropDownList>
+                            <asp:SqlDataSource runat="server" ID="SqlNamDK" ConnectionString='<%$ ConnectionStrings:websiteschoolConnectionString %>' SelectCommand="SELECT * FROM [TSNamdangki]"></asp:SqlDataSource>
+                        </a>&nbsp;<label class="art-checkbox"><br/></label></p>
+                        <asp:DataGrid ID="grdList" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="2" ForeColor="Black" Width="100%" BackColor="LightGoldenrodYellow" BorderColor="Tan" 
+                                BorderWidth="1px" GridLines="None" OnItemCommand="grdList_ItemCommand">
+                            <AlternatingItemStyle BackColor="PaleGoldenrod" />
+                                <Columns>
+                                    <asp:BoundColumn DataField="Hoten" HeaderText="Họ và tên"></asp:BoundColumn>
+                                    <asp:TemplateColumn HeaderText="Giới tính">
+                                        <ItemTemplate>
+                                            <%#gioitinh(Eval("Gioitinh").ToString()) %>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="5%" />
+                                    </asp:TemplateColumn>
+                                    <asp:TemplateColumn>
+                                        <HeaderTemplate>Ngày sinh</HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%#WebSchool.Common.DateTimeClass.ConvertDate(Eval("ngaysinh").ToString(),"dd/MM/yyyy") %>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="8%" />
+                                    </asp:TemplateColumn>
+                                    <asp:BoundColumn DataField="NamTotnghiepTHCS" HeaderText="Năm TN THCS"></asp:BoundColumn>
+                                    <asp:BoundColumn DataField="NamTotnghiepTHPT" HeaderText="Năm TN THPT"></asp:BoundColumn>       
+                                    <asp:BoundColumn DataField="TruongTotnghiepTrunghoc" HeaderText="Trường Tốt nghiệp phổ thông"></asp:BoundColumn>                                  
+                                    <asp:BoundColumn DataField="NV11" HeaderText="Nguyện vọng 1"></asp:BoundColumn>
+                                    <asp:BoundColumn DataField="NV22" HeaderText="Nguyện vọng 2"></asp:BoundColumn>
+                                    <asp:BoundColumn DataField="UT" HeaderText="ĐT ưu tiên"></asp:BoundColumn>
+                                    <asp:TemplateColumn>
+                                        <HeaderTemplate>Ngày Đăng Kí</HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%#WebSchool.Common.DateTimeClass.ConvertDate(Eval("ngayDk").ToString(),"dd/MM/yyyy") %>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="8%" />
+                                    </asp:TemplateColumn>
+
+                                </Columns>
+                                <EditItemStyle BackColor="#2461BF" />
+                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" VerticalAlign="Middle" Font-Italic="False" Font-Overline="False" Font-Strikeout="False" Font-Underline="False" HorizontalAlign="Center"/>
+                                <ItemStyle BackColor="#EFF3FB" />
+                                <PagerStyle BackColor="#F3F8FE" Font-Bold="true" ForeColor="Blue" HorizontalAlign="Center" Mode="NumericPages" />
+                                <SelectedItemStyle BackColor="#D1D0F1" Font-Bold="true" ForeColor="#33333" />
+                          </asp:DataGrid>
+                    </div>
+                </asp:Panel>
+            </article>
+</asp:Content>

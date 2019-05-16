@@ -1,0 +1,113 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Admin/webAdmin.Master" AutoEventWireup="true" CodeBehind="ChangeSlide.aspx.cs" Inherits="WebSchool.web.Admin.ChangeSlide" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+         <div class="art-content-layout">
+            <div class="art-content-layout-row">
+             <div class="art-layout-cell art-sidebar1"><div class="art-vmenublock clearfix">
+                <div class="art-vmenublockcontent">
+                    <ul class="art-vmenu">
+                        <li><a href="../web.Truong/trangchu.aspx" class="active">Trang Trường</a>
+                             <ul class="active">
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="art-vmenu">
+                        <li><a href="listuser.aspx" class="active">Danh sách tài khoản</a>
+                             <ul class="active">
+
+                            </ul> 
+                        </li>
+                    </ul>
+               <ul class="art-vmenu">
+                        <li><a href="ChangeSlide.aspx" class="active">Thay đổi Slide</a>
+                            <%-- <ul class="active">
+                                <li><a href="ChangePoster01.aspx">Quảng cáo 01</a>
+
+                                 </li>
+                               <li><a href="ChangePoster02.aspx">Quảng cáo 02</a>
+
+                                 </li>
+                                 <li><a href="ChangePoster03.aspx">Quảng cáo 03</a>
+
+                                 </li>
+                                 <li><a href="ChangePoster04.aspx">Quảng cáo 04</a>
+
+                                 </li>
+                            </ul> --%>
+                        </li>
+                    </ul>
+
+                 
+                </div></div></div>
+            <div class="art-layout-cell art-content"><article class="art-post art-article">
+                   <h2 class="art-postheader">THAY ĐỔI SLIDE</h2>
+                    <div class="art-postcontent art-postcontent-0 clearfix"><p><br/></p>
+             <asp:Panel ID="pnList" runat="server">
+                   <%-- <h2 class="art-postheader"><strong>DANH SÁCH TIN TỨC</strong></h2>--%>
+                    <div class="art-postcontent art-postcontent-0 clearfix"><p><br/></p>
+                       
+                        <asp:DataGrid ID="grdList" runat="server" AllowPaging="True" AutoGenerateColumns="False" CellPadding="2" ForeColor="Black" Width="100%" BackColor="LightGoldenrodYellow" BorderColor="Tan" 
+                                BorderWidth="1px" GridLines="None" OnItemCommand="grdList_ItemCommand" OnSelectedIndexChanged="grdList_SelectedIndexChanged">
+                            <AlternatingItemStyle BackColor="PaleGoldenrod" />
+                                <Columns>
+                                    <%--<asp:TemplateColumn ItemStyle-CssClass="tdCenter" HeaderText="Đăng tin">
+                                        <ItemTemplate>
+                                                <asp:CheckBox ID="chkSelect" runat="server" Checked='<%# trangthaidangtin(Eval("IsSlide").ToString()) %>'></asp:CheckBox>
+                                        </ItemTemplate>
+                                                <ItemStyle CssClass="tdCenter"></ItemStyle>
+                                    </asp:TemplateColumn>--%>
+                                    <asp:BoundColumn DataField="ID" Visible="false"></asp:BoundColumn>
+                                    <asp:BoundColumn DataField="name" HeaderText="Slide"></asp:BoundColumn>
+                               
+                                    <asp:TemplateColumn HeaderText="Chức năng">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lbt_editlistnews" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"ID")%>' CommandName="Edit" ToolTip="Sửa">Edit</asp:LinkButton>
+                                            <%--<asp:LinkButton ID="lbt_deletelistnews" runat="server" CommandArgument='<%#DataBinder.Eval(Container.DataItem,"ID")%>' CommandName="Delete" ToolTip="Xóa" OnClientClick="return confirm('Bạn có chắc chắn muốn xóa không?');">Delete</asp:LinkButton>--%>
+                                        </ItemTemplate>
+                                    </asp:TemplateColumn>
+                                </Columns>
+                                <FooterStyle BackColor="Tan" />
+                                <HeaderStyle BackColor="Tan" Font-Bold="True" />
+                                <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+                                <SelectedItemStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+                          </asp:DataGrid>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="pnCreate" runat="server">
+                        <table class="art-article" style="width: 100%; ">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                             <asp:Label ID="lbTieude" runat="server" ></asp:Label>
+                                                      
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 14%; ">Chọn file Slide:</td>
+                                    <td style="width: 50%; " ><asp:FileUpload ID="upfile1" runat="server" ToolTip="Tải file đính kèm" Width="30%"/>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Bạn chưa chọn file cần up" ControlToValidate="upfile1" ForeColor="Red"></asp:RequiredFieldValidator>
+                                      </td>
+
+                                   </tr>
+                                    <tr>
+                                       <td colspan="2">
+                                             <asp:Button ID="bt_savefile" Text="Thêm file đính kèm" runat="server" CssClass="art-button" OnClick="bt_savefile_Click"/>
+                                              &nbsp
+                                             <input id="Button2" type="button" value="Hủy" onclick = "history.back()"  class="art-button" />       
+                                        </td>
+                                     </tr>                       
+                               </tbody>
+
+                         </table>
+                     </asp:Panel>
+                    </div>
+               
+                <asp:Label ID="lbtempID" runat="server" Visible="false"></asp:Label>
+              </article></div>
+           </div>
+         </div>  
+</asp:Content>

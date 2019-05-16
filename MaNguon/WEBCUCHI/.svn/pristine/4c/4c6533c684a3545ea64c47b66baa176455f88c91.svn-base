@@ -1,0 +1,55 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/web.Admin/pageAdmin.Master" AutoEventWireup="true" CodeBehind="changepassword.aspx.cs" Inherits="WebSchool.web.Admin.changepassword" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+    <article class="art-post art-article">
+        <h2 class="art-postheader">ĐỔI MẬT KHẨU</h2>
+        <div class="art-postcontent art-postcontent-0 clearfix">
+            <p><br/></p>
+            <table class="art-article" style="width: 40%; border:none">
+                <tbody>
+                    <tr>
+                        <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                            <span style="font-size: 14px;">Mật khẩu cũ:<br/></span>
+                        </td>
+                        <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                            <asp:TextBox ID="txtPasswordOld" runat="server" TextMode="Password"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                            <span style="font-size: 14px;">Mật khẩu mới:<br/></span>
+
+                        </td>
+                        <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; ">
+                            <span style="font-size: 14px;">Nhập lại mật khẩu:<br/></span>
+
+                        </td>
+                        <td style="width: 50%; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; ">
+                            <asp:TextBox ID="txtPasswordRepeat" runat="server" TextMode="Password"></asp:TextBox>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 15px; padding-right: 15px; padding-bottom: 15px; padding-left: 15px; width: 50%; "
+                          colspan="2">
+                            <asp:Button ID="btChangepasspord" runat="server" text="Đổi mật khẩu" CssClass="art-button" OnClick="btChangepasspord_Click" />
+                            &nbsp
+                            <input id="Button2" type="button" value="Hủy" onclick = "history.back()"  class="art-button" />
+
+                         </td>
+                                            
+                     </tr>
+                  </tbody>
+            </table>
+        </div>
+                             
+    </article>
+</asp:Content>

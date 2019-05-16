@@ -1,0 +1,379 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="web.tuyensinh.Master.cs" Inherits="WebSchool.web.Tuyensinh.tuyensinh" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head id="Head1" runat="server">
+    <title>Trung tâm tuyển sinh và hỗ trợ việc làm - Trường Trung Cấp Nghề Củ Chi</title>
+    <link rel="SHORTCUT ICON" href="images/logoTCN.JPG" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <%-- Code --%>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width" />
+
+    <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" href="style.css" media="screen" />
+    <!--[if lte IE 7]><link rel="stylesheet" href="style.ie7.css" media="screen" /><![endif]-->
+    <link rel="stylesheet" href="style.responsive.css" media="all" />
+
+
+    <script src="jquery.js"></script>
+    <script src="script.js"></script>
+    <script src="script.responsive.js"></script>
+
+
+
+<style>.art-content .art-postcontent-0 .layout-item-0 { border-top-width:1px;border-top-style:solid;border-top-color:#CFD8E2;margin-top: 10px;margin-bottom: 10px;  }
+.art-content .art-postcontent-0 .layout-item-1 { border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-left-style:solid;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-top-color:#CFD8E2;border-right-color:#CFD8E2;border-bottom-color:#CFD8E2;border-left-color:#CFD8E2; padding-right: 10px;padding-left: 10px;  }
+.art-content .art-postcontent-0 .layout-item-2 { padding-right: 10px;padding-left: 10px;  }
+.ie7 .art-post .art-layout-cell {border:none !important; padding:0 !important; }
+.ie6 .art-post .art-layout-cell {border:none !important; padding:0 !important; }
+
+</style>
+
+</head>
+<body>
+    <%-- Code --%>
+
+<div id="art-main">
+    <div class="art-sheet clearfix">
+<header class="art-header">
+
+    <div class="art-shapes">
+        
+            </div>
+
+    <div style="margin-right:10px; margin-top:10px; margin-left:680px">
+    <form class="art-search" name="Search" action="javascript:void(0)">
+        <input type="text" value="" name="nhap"/>
+        <input type="submit" value="" name="search" class="art-search-button" onclick="Redirect();"/>
+    </form>
+     <script type="text/javascript">
+         function Redirect() {
+             var dulieu = document.forms["Search"]["nhap"].value;
+             window.location = "search.aspx?querystring=" + dulieu;
+         }
+      </script>
+    </div>
+<nav class="art-nav">
+    <ul class="art-hmenu">
+        <li><a href="Tuyensinh.aspx">Trang chủ</a>
+            <ul><li><a href="../web.Truong/trangchu.aspx">Trường</a></li><li><a href="Tuyensinh.aspx">Tuyển sinh</a></li>
+            </ul>
+        </li>
+        <li><a href="Tuyensinh.aspx">Tuyển sinh</a>
+            <ul>
+                <li><a href="TS_CaoDangTrungCap.aspx">Trung cấp</a>
+
+                </li>
+                <li><a href="TS_LienThong.aspx">Liên thông</a>
+
+                </li>
+                <li><a href="TS_NganHan.aspx">Lớp ngắn hạn</a>
+
+                </li>
+                <li><a href="TS_ThongBao.aspx">Thông báo</a>
+
+                </li>
+                <li><a href="TS_TinTuc.aspx">Tin tức</a>
+
+                </li>
+            </ul>
+        </li>
+        <li><a href="TS_Huongnghiep.aspx">Tư vấn hương nghiệp</a>
+            <ul>
+                <%--<li>
+                    <a href="TS_Tuvantructuyen.aspx">Tư vấn trực tiếp</a>
+
+                </li>
+                <li>
+                    <a href="TS_Huongnghiep.aspx">Hướng nghiệp</a>
+
+                </li>--%>
+                <li>
+                    <a href="TS_GioiThieuViecLam.aspx">Giới thiệu việc làm</a>
+
+                </li>
+
+            </ul>
+        </li>
+        <li><a href="TS_HoSoTS.aspx">Hồ sơ tuyển sinh</a>
+            <ul>
+               <%-- <li><a href="TS_HoSoCaoDang.aspx">Cao đẳng</a>
+
+                </li>--%>
+                <li><a href="TS_HoSoTrungcap.aspx">Trung cấp</a>
+
+                </li>
+
+            </ul>
+
+        </li>
+        <li><a href="TS_KetQuaTS.aspx">Kết quả tuyển sinh</a>
+            <ul>
+                <%--<li><a href="TS_KetQuaCaoDang.aspx">Cao đẳng</a>
+
+                </li>--%>
+                <li><a href="TS_KetQuaTrungcap.aspx">Trung cấp</a>
+
+                </li>
+
+            </ul>
+
+        </li>
+        <li><a href="TS_Dangkitructuyen.aspx">Đăng kí trực tuyến</a>
+        </li>
+      <%--  <li><a href="TS_HinhAnh.aspx">Hình ảnh</a>
+        </li>--%>
+
+    </ul> 
+
+</nav>
+
+                    
+</header>
+<div class="art-pageslider">
+
+     <div class="art-shapes">
+            </div>
+<div class="art-slider art-slidecontainerpageslider" data-width="1000" data-height="275">
+    <div class="art-slider-inner">
+         
+            <div class="art-slide-item art-slidepageslider0">
+                <image src="images/slidepageslider0-object2029783079.jpg" class="art-lightbox"></image>
+            </div>
+     
+            <div class="art-slide-item art-slidepageslider1 art-lightbox-image">
+                <image src="images/slidepageslider1-object1350561976.jpg" class="art-lightbox"></image>
+            </div>
+       
+         <%--   <div class="art-slide-item art-slidepageslider2">
+             <image src="images/slidepageslider2-object816868940.jpg" class="art-lightbox"></image>
+             
+            </div>
+       
+            <div class="art-slide-item art-slidepageslider3">
+             <image src="images/slidepageslider3-object1219793811.jpg" class="art-lightbox"></image>
+             
+            </div>--%>
+    </div>
+</div>
+<div class="art-slidenavigator art-slidenavigatorpageslider" data-left="1" data-top="1">
+<a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a><%--<a href="#" class="art-slidenavigatoritem"></a><a href="#" class="art-slidenavigatoritem"></a>--%>
+</div>
+
+
+</div>
+<div class="art-layout-wrapper">
+                <div class="art-content-layout">
+                    <div class="art-content-layout-row">
+                        <div class="art-layout-cell art-content">
+
+                            <form id="form1" runat="server">
+                                <div>
+                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                                    </asp:ContentPlaceHolder>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="art-layout-cell art-sidebar1">
+                            <div class="art-vmenublock clearfix">
+                                <div class="art-vmenublockcontent">
+                                    <a href="../web.Tuyensinh/TS_Dangkitructuyen.aspx" class="active">
+                                        <img src="images/banner_dktt.jpg" height="302" />
+                                    </a>
+                                </div>
+
+                                <div class="art-vmenublock clearfix">
+                                    <div class="art-vmenublockheader">
+                                        <h3 class="t">Tin tức mới</h3>
+                                    </div>
+                                   
+                                    <div class="art-vmenublockcontent">  
+                                         <br />   
+                                            <asp:DataList ID="dtltruong" runat="server" ShowFooter="False" ShowHeader="False" RepeatLayout="Flow">
+                                                <ItemTemplate>
+                                                    <ul class="art-vmenu"><li><asp:HyperLink ID="hlnewsdetailtruong" runat="server" NavigateUrl='<%# String.Concat("TSXemchitiettin.aspx?ID=", Eval("ID")) %>' Text='<%#decreaseTitle(Eval("tieude").ToString()) %>'></asp:HyperLink></li> </ul>
+                                                </ItemTemplate>
+                                            </asp:DataList>                                   
+                                        
+                                    </div>
+                                </div>
+
+                                <%--<div class="art-vmenublock clearfix">
+                                    <div class="art-vmenublockheader">
+                                        <h3 class="t">Thời khóa biểu</h3>
+                                    </div>
+                                    <div class="art-vmenublockcontent">
+                                     <br />   
+                                            <asp:DataList ID="dtltkb" runat="server" ShowFooter="False" ShowHeader="False" RepeatLayout="Flow">
+                                                <ItemTemplate>
+                                                    <ul class="art-vmenu"><li><asp:HyperLink ID="hltkb" runat="server" NavigateUrl='<%# String.Concat("SV_Xemchitiettin.aspx?tkb=", Eval("ID")) %>' Text='<%#decreaseTitle(Eval("tieude").ToString()) %>'></asp:HyperLink></li> </ul>
+                                                </ItemTemplate>
+                                            </asp:DataList>   
+                                    </div>
+                                </div>--%>
+
+                                <div class="art-vmenublock clearfix">
+                                <div class="art-vmenublockheader">
+                                    <h4 class="t">WEB LINK</h4>
+                                </div>
+                                <div class="art-vmenublockcontent">
+                                   <ul class="art-vmenu">
+                                       <li>
+                                           <a href="http://edu.hochiminhcity.gov.vn/Default.aspx">Sở Giáo dục và Đào tạo Tp. Hồ Chí Minh</a>
+                                       </li> 
+                                       <li>
+                                           <a href="http://www.cuchi.hochiminhcity.gov.vn/Default.aspx">Ủy ban Nhân dân huyện Củ Chi</a>
+                                       </li> 
+                                   </ul>
+                
+                                </div>
+                            </div>
+
+                                <%--Dang online--%>
+                            <div class="art-vmenublock clearfix">
+                                <div class="art-vmenublockheader">
+                                    <h4 class="t">THỐNG KÊ TRUY CẬP</h4>
+                                                                       
+                                </div>
+                               <div class="art-vmenublockcontent">
+                                   <ul class="art-vmenu">
+                                     <li>
+                                           <a>Đang trực tuyến:&nbsp<span style="color:black"> <%= Application["OnlineCount"].ToString() %></span></a>
+                                     </li>
+                                     <li>
+                                           <a>Tổng số lượt truy cập:&nbsp<span style="color:black"> <%= Application["Access"].ToString() %></span></a>
+                                     </li> 
+                                   </ul>
+                
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%--banner right--%>
+                    </div>
+                </div>
+            </div>
+    </div>
+<footer class="art-footer">
+  <div class="art-footer-inner">
+<div class="art-content-layout-wrapper layout-item-0">
+    <div class="layout-item-1">
+        <div class="art-content-layout-row">
+            <div class="art-layout-cell layout-item-2" style="width: 100%">
+          
+                <h3 style="text-align:left">
+                    <span style="color: rgb(253, 85, 35); font-weight: bold;">
+                        TRƯỜNG TRUNG CẤP NGHỀ CỦ CHI
+                    </span>
+                </h3>
+         
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                  - Địa chỉ: 
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                    &nbsp;&nbsp;+ Trụ sở chính: Số 02 Nguyễn Đại Năng, KP1, TT. Củ Chi, Củ Chi, TP.HCM
+     
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                  &nbsp;&nbsp;+ Cơ sở 2: ấp 3, xã Phước Vĩnh An, Củ Chi, TP.HCM
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                    &nbsp;&nbsp;+ Cơ sở 3: ấp Chợ Củ, xã An Nhơn Tây, Củ Chi, TP.HCM
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                  - Điện thoại: 
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                    &nbsp;&nbsp;+ Văn phòng trường: (028) 3.7907.268  &nbsp;&nbsp;&nbsp;  Fax: (028) 3.7907.268                    
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                    &nbsp;&nbsp;+ Phòng Ghi danh (Tư vấn hồ sơ xét tuyển): (028) 3.8920.312                    
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">                                        
+                    &nbsp;&nbsp;+ Phòng Đào tạo: (028) 3.8924.669
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                    - Wedsite: www.trungcapnghecuchi.edu.vn
+                </span>
+            </p>
+            <p style="text-align:left">
+                <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">
+                    - Email: tcncuchi2007@gmail.com
+                </span>
+            </p>
+          <%--  <br />--%>
+            </div>
+
+            <div class="art-layout-cell layout-item-2" style="width: 100%">
+          
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7833.793673092428!2d106.491176!3d10.971159!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b2b7edf2e5055%3A0x286717868c682044!2zVHLGsOG7nW5nIHRydW5nIGPhuqVwIG5naOG7gSBD4bunIENoaQ!5e0!3m2!1svi!2sus!4v1538140323978" width="600" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+
+    </div>
+</div>
+<div class="art-content-layout layout-item-1">
+    <div class="art-content-layout-row">
+        <div class="art-layout-cell layout-item-2" style="width: 100%; height:200%">
+            <%--<p style="text-align: center;">
+                <span style="color: rgb(12, 105, 228);">--%>
+                    
+
+            <%--    </span>
+
+            </p>--%>
+        </div>
+    </div>
+</div>
+</div>
+<div class="art-content-layout-wrapper layout-item-0">
+<div class="art-content-layout layout-item-1">
+    <div class="art-content-layout-row">
+    <div class="art-layout-cell layout-item-2" style="width: 50%">
+        <h4 style="text-align: left; margin-top: 6px; margin-bottom: 6px;">
+            <span style="font-size: 14px; color: rgb(253, 85, 35); font-weight: normal;">Copyright © 2018 Trường Trung cấp nghề Củ Chi. All right reserved</span>
+
+        </h4>
+    </div>
+        <div class="art-layout-cell layout-item-2" style="width: 50%">
+            <h4 style="margin-top: 6px; margin-bottom: 6px; text-align: right;">
+                <span style="font-size: 12px; color: rgb(253, 85, 35); font-weight: normal;">Thiết kế và phát triển bởi Công ty phần mềm P &amp; S</span>
+
+            </h4>
+        </div>
+    </div>
+</div>
+</div>
+
+    <%--<p class="art-page-footer">
+        <span id="art-footnote-links"><a href="../web.Admin/indexadmin.aspx" target="_blank">Liên kết</a> trang quản trị.</span>
+    </p>--%>
+  </div>
+</footer>
+
+</div>
+
+</body>
+</html>
